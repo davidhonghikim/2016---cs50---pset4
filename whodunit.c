@@ -1,12 +1,3 @@
-/**
- * whodunit.c
- *
- * Computer Science 50
- * Problem Set 5
- *
- * filter image to get find whodunit
- */
-       
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -17,7 +8,7 @@ int main(int argc, char* argv[])
     // ensure proper usage
     if (argc != 3)
     {
-        printf("Usage: ./copy infile outfile\n");
+        printf("Usage: ./whodunit infile outfile\n");
         return 1;
     }
 
@@ -80,12 +71,13 @@ int main(int argc, char* argv[])
 
             // read RGB triple from infile
             fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
-
-            // if red, convert to ?
-            if(triple.rgbtBlue == 0xff && triple.rgbtGreen == 0xff && triple.rgbtRed == 0xff){
-                triple.rgbtBlue = 0x00;
-                triple.rgbtGreen = 0x00;
+            
+            //if pixel is red, convert to white
+            if(triple.rgbtBlue == 0x00 && triple.rgbtGreen == 0x00 && triple.rgbtRed == 0xff){
+                triple.rgbtBlue = 0xff;
+                triple.rgbtGreen = 0xff;
             }
+
             // write RGB triple to outfile
             fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
         }
