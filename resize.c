@@ -12,6 +12,7 @@
 ./resize 3 small.bmp large.bmp
 ~cs50/pset4/resize 3 small.bmp staff.bmp
 ~cs50/pset4/peek small.bmp large.bmp
+diff large.bmp staff.bmp
 check50 2015.fall.pset4.resize bmp.h resize.c
 */
 
@@ -90,7 +91,6 @@ int main(int argc, char* argv[])
     //if resize is not == 1
     if(n!=1){
         bi.biSizeImage = (bi.biWidth*sizeof(RGBTRIPLE)+newpadding)*abs(bi.biHeight);
-        //bi.biSizeImage = (bi.biSizeImage - (oldpadding * abs(oldheight)) * (n*n)) + (newpadding * bi.biHeight);
         bf.bfSize = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER) + bi.biSizeImage;
         fwrite(&bf, sizeof(BITMAPFILEHEADER), 1, outptr);
     }
@@ -148,6 +148,7 @@ int main(int argc, char* argv[])
     // close outfile
     fclose(outptr);
 
+    free(buffer);
     // that's all folks
     return 0;
 }
