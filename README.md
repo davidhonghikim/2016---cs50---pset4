@@ -1,8 +1,11 @@
 whodunit
 ========
-whodunit - reads image with red noise and converts to white it to show clue
+reads image with red noise and converts to white it to show clue
 
-
-Resize
+resize
 ========
-resize - resize image by n
+resize image by n
+
+recover
+========
+recover jpegs from card.raw file
